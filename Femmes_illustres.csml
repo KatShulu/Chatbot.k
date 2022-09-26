@@ -1,0 +1,69 @@
+start:
+say Typing(1000)
+say Image("https://media.giphy.com/media/xZsLh7B3KMMyUptD9D/giphy.gif")
+say "Section en travaux 👩‍🔧"
+say Typing(1200)
+say "Je vous ramène au début !"
+say Typing(1000)
+goto flow Default
+/**start:
+say "Salut !"
+say Typing(2000)
+say "Je ne suis pas parisienne et je ne suis pas incollable sur les femmes illustres mais j'ai accès à une base de données !"
+say Question("tu est Prêt.e !? 👀",
+buttons=[
+  Button("Euh...je suppose oui") as btnOui,
+  Button("Non je m'en fiche un peu !") as btnNon
+])
+hold
+say Wait(1000)
+if (event match btnOui)
+{say "LET'S GO💥"}
+else
+{say "Ah d'accord 😥"}
+goto tutoyer
+
+tutoyer:
+say Typing(1500)
+say Question("On peut se tutoyer ?",
+buttons=[
+  Button("Oui !!") as btnCool,
+  Button("Oui !") as btnMeh
+  ])
+  hold
+  if (event match btnCool)
+{say "Cool Cool Cool !"}
+if (event match btnMeh) 
+{say "Cool !"}
+goto type
+
+type:
+say Text(3000)
+say Question("Quel type de parisiennes que tu souhaite découvrir ?",
+buttons=[
+  Button("77 Illustres parisiennes"),
+  Button("Sportives"),
+  Button("Cheffes"),
+  Button("Comédiennes"),
+  Button("Artistes"),
+  Button("Scientifiques"),
+  Button("Politiques"),
+  Button("Femmes de lettres")
+])
+hold
+remember categorie = event
+goto arrondissement
+
+arrondissement:
+say Text(3000)
+say Question("Je t'emmène dans quel arrondissement ? ",
+button=[
+  Button("TOUS JSUIS UN GUEDIN")
+])
+hold 
+remember arrondissement = event
+
+goto  affichage
+
+affichage:
+*/

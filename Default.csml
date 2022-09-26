@@ -1,0 +1,99 @@
+start:
+if (username)
+  {goto debut}
+else {
+say OneOf(["Bonjour, quel est votre nom ?","Bonjour, comment vous appellez-vous ?"])
+hold
+remember username = event
+say Typing(1000)
+say "Je tacherai de m'en souvenir 😗"
+goto debut}
+
+
+debut:
+say Typing(2000)
+say "Bonjour {{username}} !"
+say Typing(2000)
+say Question ("Voulez vous en apprendre plus sur Klervy?",
+  buttons=[
+    Button("Oui avec plaisir !") as btnOui,
+    Button("Non merci je me suis déjà fait mon avis") as btnNon
+])
+hold
+if (event match btnOui) 
+  {say Typing(1000)
+  say "Super allons-y !😀"
+  }
+else
+  {say Typing(1500)
+    say "Pas de soucis, si vous changez d'avis n'hésitez pas 😉" goto end
+  }
+say Typing(1000)
+say ("Voici tout d'abord quelques liens pratique")
+say Carousel([
+  Card("Mail", buttons=[Url("mailto:klervy.ledez.pro@hotmail.com",text="Contactez moi !")]),
+  Card("Curriculum vitae", buttons=[Url("https://www.cjoint.com/c/LIupozOTpRz", text="Jetez un œil a mon parcours")]),
+  Card("Mon Github", buttons=[Url("https://github.com/KatShulu",text="Venez voir mes progrès")])
+/**Mettre slack ?*/
+])
+goto question
+
+
+
+question:
+say Typing(5000)
+say Question ("Des questions ?🤔",
+  buttons=[
+    Button("Oui j'aimerai en savoir plus...") as btnOui,
+    Button("Non merci j'ai toutes les informations qu'il me faut !") as btnNon
+  ])
+hold
+say Typing(750)
+
+if (event match btnOui)
+  {say Question("Sur quoi voulez vous en savoir plus ?🤗",
+  buttons=[
+    Button("Présentation générale") as btnPresentation,
+    Button("Les goûts et les couleurs") as btnGout,
+    Button("Sur quoi travaille elle en se moment?") as btnMoment,
+    Button("Calculatrice") as btnCalculatrice,
+   /**  Button("Devinettes") as btnDevinettes,*/
+    Button("Questionnaire de fin") as btnFin
+  ])}
+hold
+
+
+if (event match btnPresentation)
+  { say "Je vais répondre à sa place !"
+    say Typing(3000)
+    say "Celle qui m'a écrit s'appelle Klervy, elle à 26ans, habite dans la région  Nantaise et à choisit de devenir développeuse ! 
+    Pourquoi ? Parce que sa regroupe tout ce qu'elle aime, la technologie, résoudre des problèmes et découvrir de nouvelles choses constament 🤩"
+  }
+
+
+if (event match btnGout)
+  { say "C'est partit pour un tour des choses préférées de Klervy. 🥳"
+    say Typing(1000)
+    say "Un Animal ? Le Raton Laveur ! 🦝"
+    say Typing(1000)
+    say "De la nourriture ? De la pizza ! 🍕"
+    say Typing(1000)
+    say "Une couleur ? Le rose ! 🎀"
+    say Typing(1000)
+    say "Un animé ? Full metal Alchemist !👧🔄🐶😭"
+    say Typing(1000)
+    say "Un artiste ? Zdzisław Beksiński ! 🌆"}
+
+if (event match btnMoment)
+  {say "En se moment Klervy est en train de paufiner sa candidature pour Ada tech school 🤞"}
+
+
+
+if (event match btnCalculatrice)
+    {goto flow Calculatrice}
+/**else if (event match btnDevinettes)
+    say "iii" EN CHANTIER*/
+if(event match btnFin)
+    {goto flow questionnaire_de_fin}
+
+goto question 

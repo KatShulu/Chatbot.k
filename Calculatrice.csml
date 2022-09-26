@@ -1,0 +1,8 @@
+start:
+say Typing(1000)
+say Image("https://media.giphy.com/media/xZsLh7B3KMMyUptD9D/giphy.gif")
+say "Section en travaux 👩‍🔧"
+say Typing(1200)
+say "Je vous ramène au début !"
+say Typing(1000)
+goto flow Default

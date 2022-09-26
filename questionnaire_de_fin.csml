@@ -1,0 +1,76 @@
+start:
+say "A mon tour de vous poser des questions ! 😈"
+say Typing(3000)
+say Question("Je connais déjà votre prénom {{username}}, mais de la part de qui venez vous?",
+buttons=[
+  Button("Une entreprise") as btnEntreprise,
+  Button("Une école") as btnEcole,
+  Button("Aucun des deux") as btnAucun
+])
+hold
+if (event match btnEntreprise)
+{goto entreprise}
+if (event match btnEcole)
+{goto ecole}
+if (event match btnAucun)
+{goto aucun}
+
+entreprise:
+ say("Pouvez vous me dire son nom?")
+  hold
+  remember entreprisename = event
+  say Question("Vous cherchez pour {{entreprisename}} une super apprentie déterminée, curieuse et qui sait travailler en équipe? 😳",
+  buttons=[
+    Button("Oui !") as btnOui,
+    Button("Non...") as btnNon
+  ])
+  hold
+  remember veuxarpet = event
+
+if (event match btnOui)
+{goto contact}
+else
+  {say "Dommage, revenez par içi si vous changez d'avis !"
+  goto flow Default}
+
+ecole:
+ say ("Pouvez vous me dire son nom?")
+  hold
+  remember ecolename = event
+  say Question("Vous cherchez pour {{ecolename}} une future alumni déterminée, curieuse et qui sait travailler en équipe? 😳",
+  buttons=[
+    Button("Oui !") as btnOui,
+    Button("Non...") as btnNon
+  ])
+  hold
+  remember veuxalumni = event
+
+if (event match btnOui)
+{goto contact}
+else
+  {say "Dommage, revenez par içi si vous changez d'avis !"
+  goto flow Default}
+
+aucun:
+ say Question("Hum, voulez-vous m'en dire plus par mail ?",
+  buttons=[
+    Button("Oui !") as btnOui,
+    Button("Non...") as btnNon
+  ])
+  hold
+  remember quietesvous = event
+
+if (event match btnOui)
+{goto contact}
+else
+  {say "Dommage, revenez par içi si vous changez d'avis !"
+  goto flow Default}
+
+
+ contact: 
+ say Carousel([
+  Card("Mail", buttons=[Url("mailto:klervy.ledez.pro@hotmail.com",text="Contactez moi !")])
+ ])
+   say Wait(5000)
+   goto flow Default
+
